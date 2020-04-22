@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title></title>
+
+  <style>
+    .hideElement {
+      visibility: hidden;
+    }
+
+    .showElement {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="widget showElement">
+    <div class="mainHeading">
+      <h1>Hi there</h1>
+    </div>
+
+    <div class="subHeading">
+      My Amazing subheading...
+    </div>
+
+  </div>
+  <button onclick="contentToggle()">Toggle Content</button>
+</body>
+
+
+<script>
+  // const mainHeading = document.querySelector('.mainHeading');
+  // const headings = document.querySelectorAll('div');
+  const widget = document.querySelector('.widget');
+
+  function contentToggle() {
+    if (widget.classList.contains('showElement')) {
+      widget.classList.remove('showElement');
+      widget.classList.add('hideElement');
+    } else {
+      widget.classList.remove('hideElement');
+      widget.classList.add('showElement');
+    }
+  }
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+<body>
+    <div id="dateSlot"></div>
+    <button id="dateBtn">Click for Date</button>
+    <!-- <button onclick="renderDate()">Click for Date</button> -->
+</body>
+    
+<script>
+    const dateElement = document.getElementById('dateSlot');
+    const dateBtn = document.getElementById('dateBtn');
+    // renderDate = () => {
+    //   dateElement.innerHTML = Date();
+    // }
+    dateBtn.addEventListener('click', (event) => {
+      dateElement.innerHTML = Date();
+    });
+</script>
+
+
+
+
+
+
+
+<body>
+  <input type="text" class="msgInput">
+
+  <div>
+    Characters left <span class="msgCounter">144</span>
+  </div>
+
+  <hr>
+
+  <input type="text" class="tags">
+
+  <div>
+    Characters left <span class="tagsCounter">20</span>
+  </div>
+</body>
+
+<script>
+  const getCurrentContentLength = (content, max) => {
+    const maxLength = max;
+    if (content.length > maxLength) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  const msgInput = document.querySelector('.msgInput');
+  const msgCounter = document.querySelector('.msgCounter');
+  const tagsInput = document.querySelector('.tags');
+  const tagsCounter = document.querySelector('.tagsCounter');
+
+  // Nope
+  // msgInput.addEventListener('keyup', (e) => {
+  //   console.log(e);
+  // });
+
+  
+  const textFieldLengthValidator = (textField, counter, maxCount) => {
+    textField.onkeyup = function() {
+      counter.innerHTML = maxCount - this.value.length;
+
+      if(!getCurrentContentLength(this.value, (maxCount - 1))) {
+          textField.disabled = true;
+      }
+    }
+  }
+
+  textFieldLengthValidator(msgInput, msgCounter, 144);
+  textFieldLengthValidator(tagsInput, tagsCounter, 42);
+  
+
+  const msgInputMax = parseInt(msgCounter.innerHTML)
+  const tagsInputMax = parseInt(tagsCounter.innerHTML)
+  
+  function handleKeyUpEvemt();
+</script>
+
+
+///////////////////////////////////////////
+
+
+
+
+
+
+<body>
+    <div class="widget">
+      <input type="text" id="chat-input">
+      <button id="msgBtn" onclick="sendMessage()">Submit</button>
+      <button onclick="clearMessages()">Clear Messages</button>
+    </div>
+    <div class="chat-wrapper"></div>
+</body>
+  
+<script>
+    function sendMessage() {
+      const newDiv = document.createElement('div');
+      newDiv.classList.add('chatMsg');
+      let chatInput = document.querySelector('#chat-input').value;
+      const newContent = document.createTextNode(chatInput);
+      newDiv.appendChild(newContent);
+
+      const widget = document.querySelector('.widget');
+      let chatWrapper = document.querySelector('#chat-wrapper');
+      document.querySelector('#chat-input').value = '';
+
+      if (document.querySelectorAll('.chatMsg').length > 0) {
+        chatWrapper = document.querySelectorAll('.chatMsg')[0];
+      }
+
+      widget.insertBefore(newDiv, chatWrapper);
+
+    }
+
+    function clearMessages() {
+      const messages = document.querySelectorAll('.chatMsg');
+      messages.forEach(message => message.remove());
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+  <div class="todos">
+    <h2>Pending Todos</h2>
+    <ul>
+      <li class="todoItem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, animi.</li>
+      <li class="todoItem">Numquam dolor quo alias nam vel voluptates magni magnam quisquam.</li>
+      <li class="todoItem">Recusandae eaque quisquam facere ab reprehenderit cupiditate magni placeat quis?</li>
+      <li class="todoItem">Expedita asperiores nam saepe voluptatem, nostrum aliquid debitis quam recusandae.</li>
+      <li class="todoItem">Quaerat velit deserunt reprehenderit, vel placeat impedit accusamus non, deleniti!</li>
+    </ul>
+  </div>
+
+  <h2>Completed Todos</h2>
+  <ul class="completedTodoWrapper">
+    <div class="completed"></div>
+  </ul>
+</body>
+
+<script>
+  /* grab the elements here */
+  const todos = document.querySelectorAll(".todoItem");
+  const completedTodos = document.querySelector('.completed');
+  const completedTodoWrapper = document.querySelector('.completedTodoWrapper');
+  /* select each value*/
+  todos.forEach(todo => todo.addEventListener('click', (event) => {
+    /*create a new element*/
+    let completedTodo = document.createElement('li');
+    let todoContent = document.createTextNode(todo.textContent);
+    completedTodo.appendChild(todoContent);
+    completedTodoWrapper.insertBefore(completedTodo, completedTodos);
+    /*remove old values*/
+    todo.remove();
+  }))
+    
+  todos.forEach(todo => {
+    todo.onclick = (event) => {
+      const completedTodo = document.createElement("li");
+      completedTodo.classList.add("completedTodo");
+      completedTodo.innerHTML = event.target.innerHTML;
+
+      const parentContainer = document.querySelector(".completedTodoWrapper");
+      const completed = document.querySelector(".completed");
+      parentContainer.insertBefore(completedTodo, completed)
+    }
+  })
+  
+
+</script>
+
+
+
+
+<!-- Console Methods in JavaScript -->
+
+
+<script>
+    const someObj = {
+      name: 'Mar'
+    }
+    console.log('Hi', someObj, 'After object');
+
+    const playerNames = [
+      {name: 'Altuve', pos: '2b'},
+      {name: 'Correa', pos: 'ss'},
+      {name: 'Bregman', pos: '3b'},
+    ]
+
+    console.table(playerNames);/*return literaly a table*/
+
+    console.error('oops');
+    console.warn('Something is about to go wrong');
+    
+</script>
+</html>
+
+
+<!-- Console's Copy functionality -->
+
+
+<!-- 1. into the webpage console -->
+
+1. const allTopics = document.querySelectorAll('.topics')
+2. allTopics
+3. copy(allTopics) 
+    <!-- not ready -->
+
+
+[
+  "DATABASESCYBERSECURITY",
+  "PHOENIXELIXIR",
+  "CODING INTERVIEW QUESTIONSJAVASCRIPT",
+  "CYBERSECURITYPYTHON",
+  "RUBYGEMSRUBYRAILS PERFORMANCEPERFORMANCEIMAGE COMPRESSION",
+  "CODING INTERVIEW QUESTIONSJAVASCRIPTTUTORIAL",
+  "TUTORIALRUBYPROGRAMMING",
+  "TUTORIALFUNCTIONAL PROGRAMMINGCODING INTERVIEW QUESTIONSJAVASCRIPT",
+  "CODING INTERVIEW QUESTIONSJAVASCRIPTPROGRAMMING",
+  "CODING INTERVIEW QUESTIONSJAVASCRIPTPROGRAMMING"
+]
+
+
+
+
+
+
+
+<!--  -->
+
+
+
+
+

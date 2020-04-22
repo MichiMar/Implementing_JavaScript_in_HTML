@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title></title>
+
+  <style>
+      .header {
+          color: slateblue;
+      }
+
+      .changeHeading {
+          color: steelblue;
+          font-style: italic;
+      }
+  </style>
+</head>
+<body>
+
+    <h1 class="header">Hello</h1>
+    <button id="colorButton">Change color</button>
+    <button id="textButton">Change text</button>
+    
+    
+</body>
+  
+<script>
+    const header = document.getElementsByClassName('header')[0];
+    const colorBtn = document.getElementById('colorButton');
+    const textBtn = document.querySelector('#textButton');
+
+    colorBtn.onclick = () => {
+        console.log(header)
+        if (header.classList.contains('header')) {
+            header.classList.remove('header');
+            header.classList.add('changeHeading');
+        } else {
+            header.classList.remove('changeHeading');
+            header.classList.add('header');
+        }
+    }
+
+    textBtn.onclick = () => {
+        if (header.innerHTML != "Bye") {
+            header.innerHTML = "Bye"
+        } else {
+            header.innerHTML = "Hello";
+        }
+    }
+    
+</script>
+
+</html>
